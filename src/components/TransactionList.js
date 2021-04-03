@@ -5,7 +5,7 @@ export const TransactionList = () => {
         <>
             <h3>History</h3>
             <ul>
-                <li>
+                <li className="transactionList">
                     Cash -$400
                 </li>
             </ul>
