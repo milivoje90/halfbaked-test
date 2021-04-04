@@ -87,7 +87,7 @@ input[type='number'] {
 
 .btn {
     cursor: pointer;
-    background-color: rgb(9, 160, 35);
+    background-color: #ff8901;
     box-shadow: var(--box-shadow);
     color: #fff;
     border: 0;
@@ -142,8 +142,122 @@ input[type='number'] {
     transform: translate(-100%, -50%);
     opacity: 0;
     transition: opacity 0.3s ease;
-  }
+}
   
-  .transactionList li:hover .delete-btn {
+.transactionList li:hover .delete-btn {
     opacity: 1;
-  }
+}
+
+button:focus {
+    outline: none;
+}
+button::-moz-focus-inner {
+    border: 0;
+}
+
+.globalTime {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fafafa;
+}
+
+.time-circle {
+     width: 100%;
+     max-width: 15rem;
+     position: relative;
+     display: grid;
+}
+
+.time-circle::before {
+    border: 3px solid #fafafa;
+    border-radius: 100%;
+    animation: 1s linear infinite alternate abberation, 4s linear infinite spin;
+    padding-top: 100%;
+    content: "";
+    width: 100%;
+    position: relative;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.paused::before {
+    animation: none;
+    transition: 0.3s transform;
+    background-color: #ff8901;
+}
+
+@keyframes abberation {
+     from {
+       box-shadow: 0 0 0 0 #c0392b, 0 0 0 0 green;
+     }
+    to {
+       box-shadow: 0.25rem 0.125rem 0 0 #c0392b, -0.25rem -0.125rem 0 0 green;
+     }
+}
+
+@keyframes spin {
+     from {
+       transform: rotate(0deg);
+     }
+     to {
+       transform: rotate(360deg);
+     }
+}
+
+.time {
+    padding-top: 1rem; 
+    font-size: 5rem;
+    color: black;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+      
+.buttons {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    justify-items: center;
+}
+      
+.play-pause {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background: #6C7CB3;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: white;
+}
+
+.play-pause:hover {
+    background: darken(#6C7CB3, 10%);
+} 
+.reset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    color: #ff8901;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+          
+.reset:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+} 
