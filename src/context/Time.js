@@ -2,29 +2,36 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
     const [seconds, setSeconds] = useState(0);
-    const [count, setCount] = useState(0);
+    const [isRunning, setIsRunning] = useState(false);
 
     useEffect(() => {
-        console.log('seconds', seconds);
-    }, [seconds]);
+        if (isRunning) {
+            const id = window.setInterval(() => {
+                setSeconds(seconds => seconds + 1);
+            }, 1000);
+            return () => window.clearInterval(id);
+        }
+        return undefined;
+    }, [isRunning]);
 
-    
-    console.log('count', count);
 
     return (
         <div className="globalTime">
             <button onClick={() => setSeconds(seconds + 1)}>incr seconds</button>
-            <button onClick={() => setCount(count + 1)}>incr count</button>
             <div className='time-circle'>
                 <div className="time">
-                    00:04
+                    {seconds}
                 </div>
             </div>
             <div className="buttons">
-                <button className="play-pause">
+                <button className="play-pause" onClick={() => {
+                    setIsRunning(true);
+                }}>
                     Play
                 </button>
-                <button className="play-pause">
+                <button className="play-pause" onClick={() => {
+                    setIsRunning(false);
+                }}>
                     Pause
                 </button>
                 <button className="reset">

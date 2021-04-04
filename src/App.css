@@ -243,9 +243,9 @@ button::-moz-focus-inner {
     color: white;
 }
 
-.play-pause:hover {
+/* .play-pause:hover {
     background: darken(#6C7CB3, 10%);
-} 
+}  */
 .reset {
     border: none;
     padding: 0;
