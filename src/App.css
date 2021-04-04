@@ -165,10 +165,10 @@ button::-moz-focus-inner {
 }
 
 .time-circle {
-     width: 100%;
-     max-width: 15rem;
-     position: relative;
-     display: grid;
+    width: 100%;
+    max-width: 15rem;
+    position: relative;
+    display: grid;
 }
 
 .time-circle::before {
@@ -243,9 +243,6 @@ button::-moz-focus-inner {
     color: white;
 }
 
-/* .play-pause:hover {
-    background: darken(#6C7CB3, 10%);
-}  */
 .reset {
     border: none;
     padding: 0;

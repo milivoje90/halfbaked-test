@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+const cn = (...args) => {
+    return args.filter(x => x).join(' ');
+};
+
 function App() {
     const [seconds, setSeconds] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
@@ -17,24 +21,35 @@ function App() {
 
     return (
         <div className="globalTime">
-            <button onClick={() => setSeconds(seconds + 1)}>incr seconds</button>
-            <div className='time-circle'>
+            <div className={cn(`time-circle`, !isRunning && 'paused')}>
                 <div className="time">
                     {seconds}
                 </div>
             </div>
             <div className="buttons">
-                <button className="play-pause" onClick={() => {
-                    setIsRunning(true);
-                }}>
-                    Play
-                </button>
-                <button className="play-pause" onClick={() => {
-                    setIsRunning(false);
-                }}>
-                    Pause
-                </button>
-                <button className="reset">
+                {isRunning ?
+                    (
+                        <button className="play-pause" onClick={() => {
+                            setIsRunning(false);
+                        }}>
+                            Pause
+                        </button>
+                    ) : (
+                        <button
+                            className="play-pause" onClick={() => {
+                                setIsRunning(true);
+                            }}>
+                            Play
+                        </button>
+                    )
+                }
+                <button
+                    disabled={!isRunning}
+                    className="reset"
+                    onClick={() => {
+                        setIsRunning(false)
+                        setSeconds(0);
+                    }}>
                     Reset
                 </button>
             </div>
